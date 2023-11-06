@@ -13,6 +13,8 @@ import java.util.List;
 @Setter
 public class SkladEntity {
 
+    //Класс, представляющий сущность "Склад".
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

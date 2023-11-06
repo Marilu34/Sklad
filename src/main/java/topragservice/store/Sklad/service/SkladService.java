@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class SkladService {
 
+    //Сервис для работы с сущностями "Склад".
+
     @Autowired
     private SkladRepository skladRepository;
+
+    //Получает все существующие склады.
 
     public List<SkladEntity> getAllSklads() {
         return skladRepository.findAll();

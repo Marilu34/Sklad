@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomProperties {
 
+    //Компонент, позволяющий получить пользовательские свойства.
+
     @Value("${custom.domain}")
     private String domain;
 

@@ -10,9 +10,12 @@ import java.util.List;
 @Service
 public class WarehouseCellService {
 
+
+    //Сервис для работы с сущностями "Ячейка склада".
     @Autowired
     private WarehouseCellRepository warehouseCellRepository;
 
+    //Получает все свободные ячейки для заданного склада.
     public List<WarehouseCellEntity> getWarehouseCells(Long warehouseId) {
         return warehouseCellRepository.findAllByWarehouseIdAndBusyIsFalse(warehouseId);
     }

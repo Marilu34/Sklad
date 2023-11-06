@@ -14,9 +14,11 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class WarehouseCellController {
 
+    //REST-контроллер для обработки запросов, связанных с ячейками склада.
     @Autowired
     private WarehouseCellService warehouseCellService;
 
+    //Получает список свободных ячеек для заданного склада.
     @PostMapping("/warehouse-cell")
     public List<WarehouseCellEntity> getWarehouseCells(@RequestBody Long idWarehouse) {
         return warehouseCellService.getWarehouseCells(idWarehouse);

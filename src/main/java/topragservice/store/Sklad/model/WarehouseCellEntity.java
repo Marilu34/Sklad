@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Setter
 public class WarehouseCellEntity {
 
+
+    //Класс, представляющий сущность "Ячейка склада".
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
