@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Sklad API
+  description: Документация к API для управления складскими помещениями
+  version: 1.0.0
+
+servers:
+  - url: http://example.com/api/v1
+
+paths:
+  /all-warehouse:
+    get:
+      summary: Получить список всех складов
+      responses:
+        '200':
+          description: Успешный запрос. Возвращает список складов.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkladEntity'
+
+  /warehouse-cell:
+    post:
+      summary: Получить ячейки склада
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idWarehouse:
+                  type: integer
+      responses:
+        '200':
+          description: Успешный запрос. Возвращает список ячеек склада.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WarehouseCellEntity'
+
+components:
+  schemas:
+    SkladEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+        pointName:
+          type: string
+        pointAddress:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        urlImages:
+          type: array
+          items:
+            type: string
+        schedule:
+          type: string
+        bigCell:
+          type: integer
+        mediumCell:
+          type: integer
+        smallCell:
+          type: integer
+        countFreeCell:
+          type: integer
+
+    WarehouseCellEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+        warehouseId:
+          type: integer
+        number:
+          type: integer
+        category:
+          type: string
+        area:
+          type: number
+        length:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        tier:
+          type: integer
+        price:
+          type: number
+        busy:
+          type: boolean
+        lockKey:
+          type: string
