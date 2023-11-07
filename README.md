@@ -54,8 +54,8 @@ return warehouseCellService.getWarehouseCells(idWarehouse);
 
 ## Стек:   
 · Java   
-· Spring Boot    
-· Hibernate
+· Spring Boot   
+· Hibernate     
 · PostgreSQL    
     
     
