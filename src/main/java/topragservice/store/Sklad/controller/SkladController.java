@@ -1,6 +1,8 @@
 package topragservice.store.Sklad.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +20,9 @@ public class SkladController {
     @Autowired
     private SkladService skladService;
 
-    //- Получает список всех складов.
-
-    @GetMapping("/all-warehouse")
-    public List<SkladEntity> getAllWarehouse() {
-        return skladService.getAllSklads();
+    @GetMapping("/sklad")
+    public ResponseEntity<List<SkladEntity>> getAllWarehouse() {
+        List<SkladEntity> skladEntities = skladService.getAllSklads();
+        return new ResponseEntity<>(skladEntities, HttpStatus.OK);
     }
 }
