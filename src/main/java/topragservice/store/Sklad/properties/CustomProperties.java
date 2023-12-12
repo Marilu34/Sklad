@@ -3,10 +3,11 @@ package topragservice.store.Sklad.properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * Компонент, позволяющий получить пользовательские свойства.
+ */
 @Component
 public class CustomProperties {
-
-    //Компонент, позволяющий получить пользовательские свойства.
 
     @Value("${custom.domain}")
     private String domain;

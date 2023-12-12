@@ -7,15 +7,20 @@ import topragservice.store.Sklad.repository.SkladRepository;
 
 import java.util.List;
 
+/**
+ * Сервис для работы с сущностями "Склад".
+ */
 @Service
 public class SkladService {
-
-    //Сервис для работы с сущностями "Склад".
 
     @Autowired
     private SkladRepository skladRepository;
 
-    //Получает все существующие склады.
+    /**
+     * Получает все существующие склады.
+     *
+     * @return Список сущностей складов.
+     */
 
     public List<SkladEntity> getAllSklads() {
         return skladRepository.findAll();

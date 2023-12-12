@@ -7,15 +7,23 @@ import topragservice.store.Sklad.repository.WarehouseCellRepository;
 
 import java.util.List;
 
+
+/**
+ * Сервис для работы с сущностями "Ячейка склада".
+ */
 @Service
 public class WarehouseCellService {
 
-
-    //Сервис для работы с сущностями "Ячейка склада".
     @Autowired
     private WarehouseCellRepository warehouseCellRepository;
 
-    //Получает все свободные ячейки для заданного склада.
+    /**
+     * Получает все свободные ячейки для заданного склада.
+     *
+     * @param warehouseId ID склада
+     * @return Список сущностей свободных ячеек склада.
+     */
+
     public List<WarehouseCellEntity> getWarehouseCells(Long warehouseId) {
         return warehouseCellRepository.findAllByWarehouseIdAndBusyIsFalse(warehouseId);
     }

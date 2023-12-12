@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Техническая документация API сервиса Sklad</title>
+</head>
+  <body>
+
+  <h1>Добро пожаловать в техническую документацию для API сервиса Sklad</h1>
+
+  <h2>Обзор</h2>
+
+  <h2>Быстрый старт</h2>
+  <p>Для начала использования Sklad вам необходимо выполнить следующие шаги:</p>
+
+  <h3>Запуск приложения:</h3>
+  <p>Запустите веб-приложение Sklad, используя класс SkladApplication. Приложение будет доступно по адресу <a href="https://toprag-service.store">https://toprag-service.store</a>.</p>
+
+  <p>API предоставляет два основных ресурса: <strong>warehouse-cell</strong> (складские ячейки) и <strong>sklad</strong> (информация о складах).</p>
+
+  <h3>Складские ячейки (warehouse-cell)</h3>
+  <h4>Получение складских ячеек</h4>
+  <p><strong>Endpoint:</strong> POST /api/v1/warehouse-cell</p>
+  <p><strong>Описание:</strong> Этот метод позволяет получить информацию о складских ячейках.</p>
+
+  <p><strong>Тело запроса:</strong></p>
+
+  ```json
+  {
+  "warehouseId": 123
+  }
+  <p><strong>Ответ:</strong></p>
+  <pre>
+  200 OK: Успешный запрос
+    возвращает массив объектов WarehouseCellEntity.
+  </pre>
+  <h3>Склады (sklad)</h3>
+  <h4>Получение информации о всех складах</h4>
+  <p><strong>Endpoint:</strong> GET /api/v1/sklad</p>
+  <p><strong>Описание:</strong> Этот метод возвращает информацию о всех складах.</p>
+  <p><strong>Ответ:</strong></p>
+  <pre>
+  200 OK: Успешный запрос
+    возвращает массив объектов SkladEntity.
+  </pre>
+  <h2>Модели данных</h2>
+  <h3>WarehouseCellEntity</h3>
+ в формате json
+
+  {
+  "id": 1,
+  "warehouseId": 123,
+  "number": 42,
+  "category": "Electronics",
+  "area": 100.5,
+  "length": 10.2,
+  "width": 5.0,
+  "height": 3.0,
+  "tier": 2,
+  "price": 150.99,
+  "busy": false,
+  "lockKey": "A1B2C3D4"
+  }
+  <h3>SkladEntity</h3>
+ в формате json
+
+  {
+  "id": 1,
+    "pointName": "Main Warehouse",
+    "pointAddress": "123 Main St, Cityville",
+  "latitude": 37.7749,
+  "longitude": -122.4194,
+  "urlImages": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+  "schedule": "Mon-Fri: 9 AM - 5 PM",
+  "bigCell": 50,
+  "mediumCell": 100,
+  "smallCell": 200,
+  "countFreeCell": 120
+  }
+  <h2>Примеры использования</h2>
+  <h3>Получение информации о складах</h3>
+  <p><strong>Request:</strong></p>
+
+  GET /api/v1/sklad
+  <p><strong>Response:</strong></p>
+в формате  json
+
+  [
+  {
+  "id": 1,
+  "pointName": "Main Warehouse",
+  "pointAddress": "123 Main St, Cityville",
+  "latitude": 37.7749,
+  "longitude": -122.4194,
+  "urlImages": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+  "schedule": "Mon-Fri: 9 AM - 5 PM",
+  "bigCell": 50,
+  "mediumCell": 100,
+  "smallCell": 200,
+  "countFreeCell": 120
+  },
+  {
+  "id": 2,
+  "pointName": "Secondary Warehouse",
+  "pointAddress": "456 Second St, Townsville",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "urlImages": ["https://example.com/image3.jpg", "https://example.com/image4.jpg"],
+  "schedule": "Mon-Sat: 8 AM - 6 PM",
+  "bigCell": 30,
+  "mediumCell": 80,
+  "smallCell": 150,
+  "countFreeCell": 90
+  }
+  ]
+  <h3>Получение складских ячеек для конкретного склада</h3>
+  <p><strong>Request:</strong></p>
+
+  POST /api/v1/warehouse-cell
+  Content-Type: application/json
+
+  {
+  "warehouseId": 1
+  }
+  <p><strong>Response:</strong></p>
+в формате json
+
+  [
+  {
+  "id": 1,
+  "warehouseId": 1,
+  "number": 42,
+  "category": "Electronics",
+  "area": 100.5,
+  "length": 10.2,
+    "width": 5.0,
+    "height": 3.0,
+    "tier": 2,
+    "price": 150.99,
+    "busy": false,
+  "lockKey": "A1B2C3D4"
+  },
+  {
+  "id": 2,
+  "warehouseId": 1,
+  "number": 55,
+  "category": "Clothing",
+  "area": 75.0,
+  "length": 8.0,
+  "width": 4.0,
+  "height": 2.5,
+  "tier": 1,
+  "price": 75.5,
+  "busy": true,
+  "lockKey": "E5F6G7H8"
+  }
+  ]
+
+  <h3>Дополнительные компоненты</h3>
+
+  <p><strong>CustomProperties</strong></p>
+  <p>Компонент, позволяющий получить пользовательские свойства.</p>
+  <p>Пример использования:</p>
+  <pre>
+@Autowired
+private CustomProperties customProperties;
+
+String domain = customProperties.getDomain();
+String password = customProperties.getPassword();
+String service = customProperties.getService();
+</pre>
+
+  <p><strong>StringListConverter</strong></p>
+  <p>Конвертер атрибута для преобразования списка строк в строку базы данных и обратно (для поля urlImages в SkladEntity).</p>
+
+  <h2>Репозитории</h2>
+
+  <p><strong>SkladRepository</strong></p>
+  <p>Интерфейс репозитория для работы с сущностью SkladEntity.</p>
+
+  <p><strong>WarehouseCellRepository</strong></p>
+  <p>Интерфейс репозитория для работы с сущностью WarehouseCellEntity.</p>
+
+  <h2>Сервисы</h2>
+
+  <p><strong>SkladService</strong></p>
+  <p>Сервис для работы с сущностью "Склад".</p>
+  <p>Пример использования:</p>
+  <pre>
+@Autowired
+private SkladService skladService;
+
+List<SkladEntity> allSklads = skladService.getAllSklads();
+</pre>
+
+  <p><strong>WarehouseCellService</strong></p>
+  <p>Сервис для работы с сущностью "Ячейка склада".</p>
+  <p>Пример использования:</p>
+  <pre>
+@Autowired
+private WarehouseCellService warehouseCellService;
+
+List<WarehouseCellEntity> freeCells = warehouseCellService.getWarehouseCells(1L);
+</pre>
+  <h2>История изменений</h2>
+
+  <table>
+    <tr>
+      <th>Дата</th>
+      <th>Версия</th>
+      <th>Описание изменений</th>
+    </tr>
+    <tr>
+      <td>11.12.2023</td>
+      <td>1.0.0</td>
+      <td>Первая версия документации Sklad API</td>
+    </tr>
+  </table>
+
+
+
+  <h2>Стек:</h2>
+  <ul>
+    <li>Java</li>
+    <li>Spring Boot</li>
+    <li>Hibernate</li>
+    <li>PostgreSQL</li>
+  </ul>
+
+  <h2>Завершение</h2>
+
+  <p>Это была краткая документация для веб-приложения Sklad. </p>
+  <p>Это описание API Sklad позволяет вам легко взаимодействовать с сервисом для управления складскими ячейками и получения информации о складах. Если у вас есть дополнительные вопросы или потребности в дополнительной информации, не стесняйтесь обращаться к разработчикам.</p>
+</body>
+</html>

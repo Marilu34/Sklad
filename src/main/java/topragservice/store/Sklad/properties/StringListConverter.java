@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Конвертер атрибута для преобразования списка строк в строку базы данных и обратно. URL_images
+ */
 @Converter
 public class StringListConverter implements AttributeConverter<List<String>, String> {
 
-    //Конвертер атрибута для преобразования списка строк в строку базы данных и обратно. URL_images
     private static final String SPLIT_CHAR = ",";
 
     @Override

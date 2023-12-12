@@ -5,14 +5,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
+/**
+ * Сущность, представляющая ячейку склада.
+ */
 @Entity
 @Table(name = "warehouse_cell")
 @Getter
 @Setter
 public class WarehouseCellEntity {
-
-
-    //Класс, представляющий сущность "Ячейка склада".
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

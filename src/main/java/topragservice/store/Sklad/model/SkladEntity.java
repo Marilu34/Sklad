@@ -7,13 +7,15 @@ import topragservice.store.Sklad.properties.StringListConverter;
 import javax.persistence.*;
 import java.util.List;
 
+
+/**
+ * Сущность, представляющая склад.
+ */
 @Entity
 @Table(name = "warehouse")
 @Getter
 @Setter
 public class SkladEntity {
-
-    //Класс, представляющий сущность "Склад".
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

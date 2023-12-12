@@ -11,14 +11,21 @@ import topragservice.store.Sklad.service.SkladService;
 
 import java.util.List;
 
-//REST-контроллер для обработки запросов, связанных со складами.
-
+/**
+ * REST-контроллер для обработки запросов, связанных со складами.
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class SkladController {
 
     @Autowired
     private SkladService skladService;
+
+    /**
+     * Получает список всех складов.
+     *
+     * @return ResponseEntity со списком сущностей складов и статусом OK.
+     */
 
     @GetMapping("/sklad")
     public ResponseEntity<List<SkladEntity>> getAllWarehouse() {
