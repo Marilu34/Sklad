@@ -3,6 +3,7 @@ package topragservice.store.Sklad.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import topragservice.store.Sklad.model.WarehouseCellEntity;
+import topragservice.store.Sklad.model.WarehouseCellRequest;
 import topragservice.store.Sklad.repository.WarehouseCellRepository;
 
 import java.util.List;
@@ -17,14 +18,9 @@ public class WarehouseCellService {
     @Autowired
     private WarehouseCellRepository warehouseCellRepository;
 
-    /**
-     * Получает все свободные ячейки для заданного склада.
-     *
-     * @param warehouseId ID склада
-     * @return Список сущностей свободных ячеек склада.
-     */
-
-    public List<WarehouseCellEntity> getWarehouseCells(Long warehouseId) {
-        return warehouseCellRepository.findAllByWarehouseIdAndBusyIsFalse(warehouseId);
+    public List<WarehouseCellEntity> getWarehouseCells(WarehouseCellRequest request) {
+        return warehouseCellRepository.findAllByWarehouseIdAndBusyIsFalse(request.getWarehouseId());
     }
 }
+
+
